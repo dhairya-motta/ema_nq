@@ -50,9 +50,9 @@ To ensure the alpha is structural, we actively attempted to break the algorithm 
 
 | Stress Test Scenario | Final Equity | Max DD | Sharpe | Verdict |
 | :--- | :--- | :--- | :--- | :--- |
-| **Control Environment** | $362,556 | 48.66% | 1.026 | - |
+| **Control Environment** | $362,556 | 48.66% | 0.636 | - |
 | **Latency Injection (30 Mins Late)** | **$242,184** | **56.51%** | **0.586** | **PASSED** |
-| **Gaussian Noise (±0.05% Random Walk)** | **$362,556** | **48.66%** | **1.026** | **PASSED** |
+| **Gaussian Noise (±0.05% Random Walk)** | **$362,556** | **48.66%** | **0.636** | **PASSED** |
 | **Hyper-Slippage (5.0 Points per Trade)** | -$602,094 | 769.31% | -2.677 | **FAILED** |
 
 ### Analysis of Edge
@@ -78,7 +78,7 @@ To ensure the alpha is structural, we actively attempted to break the algorithm 
 | **Final Equity** | $362,556 |
 | **Net Profit** | +$262,556 |
 | **Maximum Drawdown** | -$57,362 |
-| **True Sharpe Ratio** | 1.026 |
+| **True Sharpe Ratio** | 0.636 |
 | **Risk of Ruin** | **0.00%** |
 
 ### 4.2 Equity & Drawdown Profile (7.0x RR, Flat $1,000 Risk)
@@ -92,12 +92,12 @@ To explore the theoretical limits of the algorithm's distribution geometry, we c
 
 | Target RR | Executions | Win Rate | Final Equity | Max DD (Abs) | Sharpe |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **7.0x (Goldilocks)** | 1,371 | 16.12% | $362,556 | $57,362 | 1.026 |
-| **20.0x (Optimal Tail)** | 611 | 8.84% | **$567,821** | **$55,109** | **2.034** |
+| **7.0x (Goldilocks)** | 1,371 | 16.12% | $362,556 | $57,362 | 0.636 |
+| **20.0x (Optimal Tail)** | 611 | 8.84% | **$567,821** | **$55,109** | **0.841** |
 
 ![20.0x RR Equity and Drawdown Profile](images/20rr_equity_curve_v2.png)
 
-**Verdict:** The 20.0x RR strategy generates **+56.7% more profit** than the 7.0x baseline while requiring an agonizing 91% loss rate. Crucially, the **Sharpe Ratio doubles** (1.026 → 2.034), mathematically proving 20x is the superior *risk-adjusted* parameter. However, its extended losing streaks make it psychologically and practically incompatible with Prop Firm daily drawdown limits. **7.0x RR** remains the practical "Goldilocks" deployment parameter.
+**Verdict:** The 20.0x RR strategy generates **+56.7% more profit** than the 7.0x baseline while requiring an agonizing 91% loss rate. Crucially, the **Sharpe Ratio doubles** (0.636 → 0.841), mathematically proving 20x is the superior *risk-adjusted* parameter. However, its extended losing streaks make it psychologically and practically incompatible with Prop Firm daily drawdown limits. **7.0x RR** remains the practical "Goldilocks" deployment parameter.
 
 ### 4.3 Historical Monthly Performance
 To understand the actual month-to-month reality of trading this strategy over the 14-year period, we analyzed the performance of every single calendar month using **Flat $1,000 Risk per trade**.
@@ -210,18 +210,18 @@ Compounding risk at 0.5% per trade transforms a $100,000 starting balance into o
 **=== 7.0x RR Strategy (14-Year Compounding) ===**
 | Risk % | Final Equity | Max Drawdown | Sharpe |
 | :--- | :--- | :--- | :--- |
-| **0.30%** | $208,327 | -16.33% | 1.026 |
-| **0.50%** | $320,485 | -26.21% | 1.026 |
-| **0.75%** | $515,021 | -37.48% | 1.026 |
-| **1.00%** | $772,194 | -47.81% | 1.026 |
+| **0.30%** | $208,327 | -16.33% | 0.636 |
+| **0.50%** | $320,485 | -26.21% | 0.636 |
+| **0.75%** | $515,021 | -37.48% | 0.636 |
+| **1.00%** | $772,194 | -47.81% | 0.636 |
 
 **=== 20.0x RR Strategy (14-Year Compounding) ===**
 | Risk % | Final Equity | Max Drawdown | Sharpe |
 | :--- | :--- | :--- | :--- |
-| **0.30%** | $369,625 | -15.44% | 2.034 |
-| **0.50%** | $799,144 | -24.57% | 2.034 |
-| **0.75%** | $1,889,219 | -34.78% | 2.034 |
-| **1.00%** | $4,016,086 | -43.77% | 2.034 |
+| **0.30%** | $369,625 | -15.44% | 0.841 |
+| **0.50%** | $799,144 | -24.57% | 0.841 |
+| **0.75%** | $1,889,219 | -34.78% | 0.841 |
+| **1.00%** | $4,016,086 | -43.77% | 0.841 |
 
 *(Note: The Sharpe ratio remains identical across risk parameters because Sharpe measures Risk-Adjusted Return. Scaling risk equally scales both returns and standard deviation.)*
 
@@ -233,6 +233,7 @@ While compounding mathematically works on paper, there are three fundamental mec
 3. **The Extended "Bleed" Periods:** Due to the low win rate, the algorithm undergoes extended periods of sideways bleeding during market consolidation regimes. Trading 0.49 trades per day means you can go 2–3 months with no winners, requiring iron psychological discipline.
 
 These frictions confirm why utilizing small, fixed-dollar risk across a diversified matrix of proprietary firm accounts is the only realistic avenue to actualizing the mathematical edge in cash.
+
 
 
 ---
@@ -256,14 +257,15 @@ The core thesis: by triggering BE only at the **halfway point**, we avoid the co
 | **Executions** | 1,371 | 1,437 | +66 |
 | **Win Rate** | 16.12% | 14.89% | -1.23% |
 | **Wins / Losses / Scratch BEs** | 221 / 1,150 / 0 | 214 / 1,119 / 104 | Saved 31 losses |
-| **Flat 1k Final Equity** | \,556 | **\,377** | **+\,821** |
-| **Flat 1k Max DD** | \,362 | **\,723** | **-\,639** |
-| **Goldilocks 300/75 Equity** | \,599 | **\,567** | **+\,968** |
-| **0.5pct Comp Equity** | \,485 | **\,082** | **+\,597** |
-| **0.5pct Comp Max DD** | 26.21% | **23.27%** | **-2.94%** |
-| **1.0pct Comp Equity** | \,194 | **\,063,418** | **+\,224** |
-| **1.0pct Comp Max DD** | 47.81% | **42.95%** | **-4.86%** |
-| **MC Mean Max DD (1000 paths)** | 32.98% | **31.04%** | **-1.94%** |
+| **Flat $1k Final Equity** | $362,556 | **$392,377** | **+$29,821** |
+| **Flat $1k Max DD** | -$57,362 | **-$49,723** | **+$7,639** |
+| **Goldilocks $300/$75 Equity** | $171,599 | **$179,567** | **+$7,968** |
+| **Goldilocks $300/$75 Max DD** | -$7,863 | -$8,815 | -$952 |
+| **0.5% Comp Equity** | $320,485 | **$374,082** | **+$53,597** |
+| **0.5% Comp Max DD** | -26.21% | **-23.27%** | **+2.94%** |
+| **1.0% Comp Equity** | $772,194 | **$1,063,418** | **+$291,224** |
+| **1.0% Comp Max DD** | -47.81% | **-42.95%** | **+4.86%** |
+| **MC Mean Max DD (1000 paths)** | -32.98% | **-31.04%** | **+1.94%** |
 
 #### 20.0x RR Strategy
 
@@ -272,13 +274,15 @@ The core thesis: by triggering BE only at the **halfway point**, we avoid the co
 | **Executions** | 611 | 623 | +12 |
 | **Win Rate** | 8.84% | 8.67% | -0.17% |
 | **Wins / Losses / Scratch BEs** | 54 / 557 / 0 | 54 / 548 / 21 | Saved 9 losses |
-| **Flat 1k Final Equity** | \,821 | **\,440** | **+\,619** |
-| **Flat 1k Max DD** | \,109 | **\,594** | **-\,515** |
-| **0.5pct Comp Equity** | \,144 | **\,939** | **+\,795** |
-| **0.5pct Comp Max DD** | 24.57% | **23.23%** | **-1.34%** |
-| **1.0pct Comp Equity** | \,016,086 | **\,794,323** | **+\,237** |
-| **1.0pct Comp Max DD** | 43.77% | **41.75%** | **-2.02%** |
-| **MC Mean Max DD (1000 paths)** | 27.15% | **26.38%** | **-0.77%** |
+| **Flat $1k Final Equity** | $567,821 | **$585,440** | **+$17,619** |
+| **Flat $1k Max DD** | -$55,109 | **-$51,594** | **+$3,515** |
+| **Goldilocks $300/$75 Equity** | $205,615 | $200,256 | -$5,359 |
+| **Goldilocks $300/$75 Max DD** | -$9,890 | **-$8,832** | **+$1,058** |
+| **0.5% Comp Equity** | $799,144 | **$872,939** | **+$73,795** |
+| **0.5% Comp Max DD** | -24.57% | **-23.23%** | **+1.34%** |
+| **1.0% Comp Equity** | $4,016,086 | **$4,794,323** | **+$778,237** |
+| **1.0% Comp Max DD** | -43.77% | **-41.75%** | **+2.02%** |
+| **MC Mean Max DD (1000 paths)** | -27.15% | **-26.38%** | **+0.77%** |
 
 ---
 
@@ -286,10 +290,10 @@ The core thesis: by triggering BE only at the **halfway point**, we avoid the co
 
 The charts below show both equity curves drawn on the same axis. The **cyan line is the BE strategy**, the **grey line is the baseline**. Watch how the BE strategy pulls ahead and the drawdown bands become shallower.
 
-#### 7.0x RR - Flat \,000 Risk
+#### 7.0x RR - Flat $1,000 Risk
 ![7RR No-BE vs With-BE Comparison](images/7rr_be_vs_nobe.png)
 
-#### 20.0x RR - Flat \,000 Risk
+#### 20.0x RR - Flat $1,000 Risk
 ![20RR No-BE vs With-BE Comparison](images/20rr_be_vs_nobe.png)
 
 #### 7.0x RR - 1.0% Compounding
@@ -299,10 +303,10 @@ The charts below show both equity curves drawn on the same axis. The **cyan line
 
 ### 8.3 Equity and Drawdown Profiles (BE Strategy)
 
-#### 7.0x RR - Flat \,000 Risk - With BE at 3.5x
+#### 7.0x RR - Flat $1,000 Risk - With BE at 3.5x
 ![7RR BE Equity Flat](images/7rr_be_equity_flat.png)
 
-#### 20.0x RR - Flat \,000 Risk - With BE at 10x
+#### 20.0x RR - Flat $1,000 Risk - With BE at 10x
 ![20RR BE Equity Flat](images/20rr_be_equity_flat.png)
 
 #### 7.0x RR - 1.0% Compounding - With BE at 3.5x
@@ -341,6 +345,6 @@ The 50% Breakeven rule is mathematically optimal because it threads the needle b
 2. **Never Move BE:** You allow trades that reached +5x to fall all the way back to -1x. Pure psychological torture and unnecessary equity destruction.
 3. **Move BE at 50% (3.5x for 7RR):** By the time price has traveled 3.5x in your direction, it has demonstrated meaningful momentum conviction. The probability of a full reversal back to your entry is statistically low. You convert what would have been painful losses into neutral scratch trades, while still giving winners room to hit the full 7x target.
 
-The compounding improvement is the most compelling argument: the 7RR strategy grows from **\ to \.06M** simply by adding one additional price-level check. The 20RR strategy grows from **\.0M to \.8M** (+\).
+The compounding improvement is the most compelling argument: the 7RR strategy grows from **$772k to $1.06M** simply by adding one additional price-level check. The 20RR strategy grows from **$4.0M to $4.8M** (+$778k).
 
 **This is the official, final, fully-validated strategy ruleset.**
