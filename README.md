@@ -256,6 +256,7 @@ The core thesis: by triggering BE only at the **halfway point**, we avoid the co
 | :--- | :---: | :---: | :---: |
 | **Executions** | 1,371 | 1,437 | +66 |
 | **Win Rate** | 16.12% | 14.89% | -1.23% |
+| **True Sharpe Ratio** | 0.636 | **0.722** | **+0.086** |
 | **Wins / Losses / Scratch BEs** | 221 / 1,150 / 0 | 214 / 1,119 / 104 | Saved 31 losses |
 | **Flat $1k Final Equity** | $362,556 | **$392,377** | **+$29,821** |
 | **Flat $1k Max DD** | -$57,362 | **-$49,723** | **+$7,639** |
@@ -273,6 +274,7 @@ The core thesis: by triggering BE only at the **halfway point**, we avoid the co
 | :--- | :---: | :---: | :---: |
 | **Executions** | 611 | 623 | +12 |
 | **Win Rate** | 8.84% | 8.67% | -0.17% |
+| **True Sharpe Ratio** | 0.841 | **0.874** | **+0.033** |
 | **Wins / Losses / Scratch BEs** | 54 / 557 / 0 | 54 / 548 / 21 | Saved 9 losses |
 | **Flat $1k Final Equity** | $567,821 | **$585,440** | **+$17,619** |
 | **Flat $1k Max DD** | -$55,109 | **-$51,594** | **+$3,515** |
