@@ -1,0 +1,5 @@
+
+| Strategy (10RR) | 2010-2017 (Training) Sharpe | 2017-2024 (Blind Test) Sharpe | Performance Decay |
+| :--- | :---: | :---: | :---: |
+| **Optimized (70/160)** | 1.178 | 1.319 | 12.0% |
+| **Baseline (25/100)** | 0.216 | 1.104 | 411.2% |

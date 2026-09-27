@@ -1,0 +1,63 @@
+
+=====================================================================
+  60/180 EMA SYSTEM - FULL QUANTITATIVE VALIDATION (2010 - 2024)
+=====================================================================
+
+### 3. Institutional Destruction Stress-Testing (Proving "The Tank")
+All tests use the Flat $1,000 Risk per trade model on the 7RR Baseline.
+
+| Stress Test Scenario | Final Equity | Max DD | Sharpe | Verdict |
+| :--- | :--- | :--- | :--- | :--- |
+| Control Environment | $344,332 | -$31,555 | 1.014 | - |
+| Latency Injection (30 Mins Late) | $153,345 | -$44,246 | 0.485 | PASSED |
+| Gaussian Noise (±0.05% Random Walk) | $297,154 | -$30,354 | 0.892 | PASSED |
+| Hyper-Slippage (5.0 Points per Trade) | $34,765 | -$152,749 | 0.102 | FAILED |
+
+### 4.3 Historical Monthly Performance
+=== 7.0x RR Strategy (170 Months Traded) ===
+Profitable Months: 64.7%
+Avg Win Month: +$5,755 | Avg Loss Month: -$4,812
+Best Month: +$17,915 | Worst Month: -$10,885
+
+=== 20.0x RR Strategy (143 Months Traded) ===
+Profitable Months: 37.1%
+Avg Win Month: +$17,820 | Avg Loss Month: -$4,295
+Best Month: +$19,993 | Worst Month: -$10,703
+
+### 8.1 The Full Comparison: No-BE vs With-BE (All Risk Models)
+
+#### 7.0x RR Strategy (60/180 EMAs)
+
+| Metric | No Breakeven | BE at 3.5x | Delta |
+| :--- | :---: | :---: | :---: |
+| **Executions** | 836 | 845 | +9 |
+| **Win Rate** | 18.30% | 15.98% | -2.33% |
+| **True Sharpe Ratio** | 1.014 | 0.889 | -0.126 |
+| **Wins / Losses / Scratch BEs** | 153 / 683 / 0 | 135 / 622 / 88 | |
+| **Flat $1k Final Equity** | $344,332 | **$284,291** | **+$-60,041** |
+| **Flat $1k Max DD** | -$31,555 | **-$29,512** | **+$2,043** |
+| **0.5% Comp Equity** | $505,446 | **$378,785** | **+$-126,661** |
+| **0.5% Comp Max DD** | -14.81% | **-13.93%** | **+0.88%** |
+| **1.0% Comp Equity** | $2,102,418 | **$1,207,632** | **+$-894,787** |
+| **1.0% Comp Max DD** | -27.77% | **-26.99%** | **+0.78%** |
+| **MC Flat $1k Max DD (Mean / Median)** | -$37,487 / -$35,600 | **-$38,659 / -$37,102** | **+$-1,172** |
+| **MC 0.5% Comp Max DD (Mean / Median)** | -17.30% / -16.63% | **-17.80% / -17.26%** | **+-0.50%** |
+| **MC 1.0% Comp Max DD (Mean / Median)** | -31.96% / -30.97% | **-32.81% / -32.07%** | **+-0.85%** |
+
+#### 20.0x RR Strategy (60/180 EMAs)
+
+| Metric | No Breakeven | BE at 10x | Delta |
+| :--- | :---: | :---: | :---: |
+| **Executions** | 524 | 539 | +15 |
+| **Win Rate** | 10.11% | 9.65% | -0.47% |
+| **True Sharpe Ratio** | 1.021 | 1.032 | +0.012 |
+| **Wins / Losses / Scratch BEs** | 53 / 471 / 0 | 52 / 451 / 36 | |
+| **Flat $1k Final Equity** | $557,924 | **$558,832** | **+$907** |
+| **Flat $1k Max DD** | -$33,420 | **-$34,432** | **+$-1,013** |
+| **0.5% Comp Equity** | $1,261,492 | **$1,273,507** | **+$12,016** |
+| **0.5% Comp Max DD** | -15.84% | **-16.36%** | **+-0.52%** |
+| **1.0% Comp Equity** | $10,120,642 | **$10,405,682** | **+$285,039** |
+| **1.0% Comp Max DD** | -29.86% | **-31.32%** | **+-1.46%** |
+| **MC Flat $1k Max DD (Mean / Median)** | -$46,906 / -$44,818 | **-$45,286 / -$42,807** | **+$1,621** |
+| **MC 0.5% Comp Max DD (Mean / Median)** | -21.02% / -20.29% | **-20.33% / -19.49%** | **+0.69%** |
+| **MC 1.0% Comp Max DD (Mean / Median)** | -37.84% / -37.04% | **-36.67% / -35.63%** | **+1.16%** |

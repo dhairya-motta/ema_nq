@@ -1,0 +1,37 @@
+
+### 3. Institutional Destruction Stress-Testing (10RR Baseline)
+All tests use the Flat $1,000 Risk per trade model.
+
+| Stress Test Scenario | Final Equity | Max DD | Sharpe | Verdict |
+| :--- | :--- | :--- | :--- | :--- |
+| **Control Environment** | $406,907 | -$31,247 | 0.990 | - |
+| **Latency Injection (30 Mins Late)** | $114,273 | -$76,865 | 0.307 | PASSED |
+| **Gaussian Noise (±0.05% Random Walk)**| $385,377 | -$35,833 | 0.947 | PASSED |
+| **Hyper-Slippage (5.0 Points per Trade)**| $121,940 | -$115,700 | 0.296 | FAILED |
+
+### 4.3 Historical Monthly Performance
+To understand the actual month-to-month reality of trading this strategy over the 14-year period:
+
+**=== 10.0x RR Strategy (168 Months Traded) ===**
+*   **Profitable Months:** 55.4% 
+*   **Avg Win Month:** +$8,546 | **Avg Loss Month:** -$5,171
+*   **Best Month:** +$19,981 | **Worst Month:** -$11,774
+
+### 8.1 The Full Comparison: No-BE vs With-BE (10RR)
+
+#### 10.0x RR Strategy (50/200 EMAs)
+
+| Metric | No Breakeven | BE at 5.0x | Delta |
+| :--- | :---: | :---: | :---: |
+| **Executions** | 787 | 802 | +15 |
+| **Win Rate** | 14.23% | 13.22% | -1.01% |
+| **True Sharpe Ratio** | 0.990 | 0.999 | +0.009 |
+| **Wins / Losses / Scratch BEs** | 112 / 675 / 0 | 106 / 626 / 70 | |
+| **Flat $1k Final Equity** | **$406,907** | $398,667 | $-8,241 |
+| **Flat $1k Max DD** | -$31,247 | **-$27,214** | +$4,033 |
+| **0.5% Comp Equity** | **$660,269** | $638,949 | $-21,319 |
+| **0.5% Comp Max DD** | -14.84% | **-13.10%** | +1.74% |
+| **1.0% Comp Equity** | **$3,304,212** | $3,143,540 | $-160,672 |
+| **1.0% Comp Max DD** | -28.08% | **-25.11%** | +2.97% |
+| **MC Flat $1k Max DD (Mean / Median)** | **-$43,574 / -$41,753** | -$41,379 / -$39,614 | -$2,195 |
+| **MC 1.0% Comp Max DD (Mean / Median)** | **-36.13% / -35.07%** | -34.61% / -33.71% | -1.52% |
