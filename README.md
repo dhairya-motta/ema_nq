@@ -266,7 +266,10 @@ The core thesis: by triggering BE only at the **halfway point**, we avoid the co
 | **0.5% Comp Max DD** | -26.21% | **-23.27%** | **+2.94%** |
 | **1.0% Comp Equity** | $772,194 | **$1,063,418** | **+$291,224** |
 | **1.0% Comp Max DD** | -47.81% | **-42.95%** | **+4.86%** |
-| **MC Mean Max DD (1000 paths)** | -32.98% | **-31.04%** | **+1.94%** |
+| **MC Flat $1k Max DD (Mean / Median)** | -$63,269 / -$60,454 | **-$57,710 / -$55,385** | **+$5,558** |
+| **MC Goldilocks Max DD (Mean / Median)** | -$14,339 / -$13,565 | **-$12,999 / -$12,510** | **+$1,339** |
+| **MC 0.5% Comp Max DD (Mean / Median)** | -27.76% / -26.97% | **-25.64% / -24.87%** | **+2.12%** |
+| **MC 1.0% Comp Max DD (Mean / Median)** | -48.84% / -48.14% | **-45.59% / -44.72%** | **+3.25%** |
 
 #### 20.0x RR Strategy
 
@@ -284,7 +287,10 @@ The core thesis: by triggering BE only at the **halfway point**, we avoid the co
 | **0.5% Comp Max DD** | -24.57% | **-23.23%** | **+1.34%** |
 | **1.0% Comp Equity** | $4,016,086 | **$4,794,323** | **+$778,237** |
 | **1.0% Comp Max DD** | -43.77% | **-41.75%** | **+2.02%** |
-| **MC Mean Max DD (1000 paths)** | -27.15% | **-26.38%** | **+0.77%** |
+| **MC Flat $1k Max DD (Mean / Median)** | -$58,342 / -$55,553 | **-$55,767 / -$52,890** | **+$2,574** |
+| **MC Goldilocks Max DD (Mean / Median)** | -$14,290 / -$13,512 | **-$13,914 / -$13,121** | **+$376** |
+| **MC 0.5% Comp Max DD (Mean / Median)** | -25.54% / -24.75% | **-24.59% / -23.68%** | **+0.96%** |
+| **MC 1.0% Comp Max DD (Mean / Median)** | -44.96% / -44.02% | **-43.54% / -42.62%** | **+1.42%** |
 
 ---
 
