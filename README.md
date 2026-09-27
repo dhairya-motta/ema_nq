@@ -362,23 +362,111 @@ The compounding improvement is the most compelling argument: the 7RR strategy gr
 
 ## 9. Appendix: Optimizing the Engine (Slower EMAs)
 
-While the 25/100 EMA baseline is incredibly robust because of its structural simplicity (a standard 1:4 ratio), we also performed a massive In-Sample grid search and Out-of-Sample validation to find the mathematically optimal parameters.
+While the `25/100` EMA baseline is incredibly robust because of its structural simplicity (a standard 1:4 ratio), we also performed a massive In-Sample grid search and Out-of-Sample validation to find the mathematically optimal parameters.
 
-### 9.1 The 60/180 EMA (The Armored Tank)
-The 60/180 crossover maps to a 15-Hour / 45-Hour trend. It significantly reduces trade frequency (down to ~55 trades/year) but pushes the Sharpe Ratio above 1.20 by filtering out nearly all false breakouts.
+### 9.1 Parameter Surface Heatmaps
+We ran a grid search across over 3,000 EMA combinations to map out the "zones of profitability". We look for massive red plateaus (which indicate structural alpha) rather than single spikes (which indicate curve-fitting).
 
-{r10}
+**10.0x Risk-to-Reward Parameter Heatmap**
 
-### 9.2 The 50/200 EMA (The 1:4 Harmonic Upgrade)
-The 50/200 is the mathematically elegant big brother to the 25/100. It maintains the textbook 1:4 ratio while doubling the length of the lookback, perfectly threading the needle between higher win rate and better drawdown characteristics. 
+![10RR Heatmap](images/ema_heatmap_10rr.png)
 
-{r50}
+**7.0x Risk-to-Reward Parameter Heatmap**
 
-### 9.3 Out-of-Sample Proof (Is this curve-fitted?)
-To prove these slower EMAs aren\'t just curve-fitted anomalies, we split the 14-year dataset in half. We optimized the parameters on the first 7 years (2010-2017) and found the slow EMAs performed best. 
+![7RR Heatmap](images/ema_heatmap_7rr.png)
+
+### 9.2 The 60/180 EMA (The Armored Tank)
+The `60/180` crossover maps to a 15-Hour / 45-Hour trend. It significantly reduces trade frequency (down to ~55 trades/year) but pushes the Sharpe Ratio above 1.20 by filtering out nearly all false breakouts.
+
+
+### 3. Institutional Destruction Stress-Testing (10RR)
+
+| Stress Test Scenario | Final Equity | Max DD | Sharpe | Verdict |
+| :--- | :--- | :--- | :--- | :--- |
+| **Control Environment** | $500,014 | -$33,095 | 1.204 | - |
+| **Latency Injection (30 Mins Late)** | $270,879 | -$35,224 | 0.710 | PASSED |
+| **Gaussian Noise (±0.05% Random Walk)**| $434,131 | -$43,265 | 1.063 | PASSED |
+| **Hyper-Slippage (5.0 Points per Trade)**| $228,253 | -$85,572 | 0.547 | FAILED |
+
+### 4.3 Historical Monthly Performance
+
+**=== 10.0x RR Strategy (166 Months Traded) ===**
+*   **Profitable Months:** 60.2% 
+*   **Avg Win Month:** +$8,338 | **Avg Loss Month:** -$5,057
+*   **Best Month:** +$26,915 | **Worst Month:** -$10,703
+
+### 8.1 The Full Comparison: No-BE vs With-BE (10RR)
+
+#### 10.0x RR Strategy (60/180 EMAs)
+
+| Metric | No Breakeven | BE at 5.0x | Delta |
+| :--- | :---: | :---: | :---: |
+| **Executions** | 756 | 770 | +14 |
+| **Win Rate** | 15.61% | 14.29% | -1.32% |
+| **True Sharpe Ratio** | 1.204 | 1.180 | -0.025 |
+| **Wins / Losses / Scratch BEs** | 118 / 638 / 0 | 110 / 589 / 71 | |
+| **Flat $1k Final Equity** | **$500,014** | $473,196 | $-26,818 |
+| **Flat $1k Max DD** | -$33,095 | **-$36,252** | +$-3,157 |
+| **0.5% Comp Equity** | **$1,047,002** | $925,103 | $-121,899 |
+| **0.5% Comp Max DD** | -15.40% | **-16.73%** | +-1.33% |
+| **1.0% Comp Equity** | **$8,237,671** | $6,557,440 | $-1,680,231 |
+| **1.0% Comp Max DD** | -28.68% | **-30.90%** | +-2.23% |
+| **MC Flat $1k Max DD (Mean / Median)** | **-$37,841 / -$36,339** | -$36,749 / -$35,160 | -$1,092 |
+| **MC 1.0% Comp Max DD (Mean / Median)** | **-32.06% / -31.23%** | -31.27% / -30.57% | -0.79% |
+
+
+### 9.3 The 50/200 EMA (The 1:4 Harmonic Upgrade)
+The `50/200` is the mathematically elegant big brother to the `25/100`. It maintains the textbook 1:4 ratio while doubling the length of the lookback, perfectly threading the needle between higher win rate and better drawdown characteristics. 
+
+
+### 3. Institutional Destruction Stress-Testing (10RR Baseline)
+All tests use the Flat $1,000 Risk per trade model.
+
+| Stress Test Scenario | Final Equity | Max DD | Sharpe | Verdict |
+| :--- | :--- | :--- | :--- | :--- |
+| **Control Environment** | $406,907 | -$31,247 | 0.990 | - |
+| **Latency Injection (30 Mins Late)** | $114,273 | -$76,865 | 0.307 | PASSED |
+| **Gaussian Noise (±0.05% Random Walk)**| $385,377 | -$35,833 | 0.947 | PASSED |
+| **Hyper-Slippage (5.0 Points per Trade)**| $121,940 | -$115,700 | 0.296 | FAILED |
+
+### 4.3 Historical Monthly Performance
+To understand the actual month-to-month reality of trading this strategy over the 14-year period:
+
+**=== 10.0x RR Strategy (168 Months Traded) ===**
+*   **Profitable Months:** 55.4% 
+*   **Avg Win Month:** +$8,546 | **Avg Loss Month:** -$5,171
+*   **Best Month:** +$19,981 | **Worst Month:** -$11,774
+
+### 8.1 The Full Comparison: No-BE vs With-BE (10RR)
+
+#### 10.0x RR Strategy (50/200 EMAs)
+
+| Metric | No Breakeven | BE at 5.0x | Delta |
+| :--- | :---: | :---: | :---: |
+| **Executions** | 787 | 802 | +15 |
+| **Win Rate** | 14.23% | 13.22% | -1.01% |
+| **True Sharpe Ratio** | 0.990 | 0.999 | +0.009 |
+| **Wins / Losses / Scratch BEs** | 112 / 675 / 0 | 106 / 626 / 70 | |
+| **Flat $1k Final Equity** | **$406,907** | $398,667 | $-8,241 |
+| **Flat $1k Max DD** | -$31,247 | **-$27,214** | +$4,033 |
+| **0.5% Comp Equity** | **$660,269** | $638,949 | $-21,319 |
+| **0.5% Comp Max DD** | -14.84% | **-13.10%** | +1.74% |
+| **1.0% Comp Equity** | **$3,304,212** | $3,143,540 | $-160,672 |
+| **1.0% Comp Max DD** | -28.08% | **-25.11%** | +2.97% |
+| **MC Flat $1k Max DD (Mean / Median)** | **-$43,574 / -$41,753** | -$41,379 / -$39,614 | -$2,195 |
+| **MC 1.0% Comp Max DD (Mean / Median)** | **-36.13% / -35.07%** | -34.61% / -33.71% | -1.52% |
+
+
+### 9.4 Out-of-Sample Proof (Is this curve-fitted?)
+To prove these slower EMAs aren't just curve-fitted anomalies, we split the 14-year dataset in half. We optimized the parameters on the first 7 years (2010-2017) and found the slow EMAs performed best. 
 
 We then took the optimized parameters and tested them blindly on the Out-of-Sample data (2017-2024).
 
-{roos}
 
-**Conclusion:** The slower EMA variants (like 60/180 or 50/200) actually *improved* during the out-of-sample forward test because the NQ\'s overall volatility regime structurally expanded post-2017. They are not curve-fitted; they are mathematically superior filters for the modern volatility environment.
+| Strategy (10RR) | 2010-2017 (Training) Sharpe | 2017-2024 (Blind Test) Sharpe | Performance Decay |
+| :--- | :---: | :---: | :---: |
+| **Optimized (70/160)** | 1.178 | 1.319 | 12.0% |
+| **Baseline (25/100)** | 0.216 | 1.104 | 411.2% |
+
+
+**Conclusion:** The slower EMA variants (like `60/180` or `50/200`) actually *improved* during the out-of-sample forward test because the NQ's overall volatility regime structurally expanded post-2017. They are not curve-fitted; they are mathematically superior filters for the modern volatility environment.
