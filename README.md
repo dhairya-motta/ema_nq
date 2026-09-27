@@ -415,6 +415,21 @@ The `60/180` crossover maps to a 15-Hour / 45-Hour trend. It significantly reduc
 | **MC 1.0% Comp Max DD (Mean / Median)** | **-32.06% / -31.23%** | -31.27% / -30.57% | -0.79% |
 
 
+
+#### 60/180 (10RR) - Flat Equity Curve
+![60/180 10RR Flat Equity](images/60_180_10rr_equity_flat.png)
+
+#### 60/180 (10RR) - 1.0% Compounding Equity Curve
+![60/180 10RR Comp Equity](images/60_180_10rr_equity_comp.png)
+
+#### 60/180 (10RR) - 1.0% Compounding Monte Carlo (1,000 Paths)
+![60/180 10RR MC Paths](images/60_180_10rr_mc_paths.png)
+
+#### 60/180 (10RR) - 1.0% Compounding Monte Carlo Drawdown Distribution
+*Notice how tight the drawdown curve is despite massive compounding*
+
+![60/180 10RR MC Hist](images/60_180_10rr_mc_hist.png)
+
 ### 9.3 The 50/200 EMA (The 1:4 Harmonic Upgrade)
 The `50/200` is the mathematically elegant big brother to the `25/100`. It maintains the textbook 1:4 ratio while doubling the length of the lookback, perfectly threading the needle between higher win rate and better drawdown characteristics. 
 
