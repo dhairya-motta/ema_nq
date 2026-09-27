@@ -355,4 +355,4 @@ The 50% Breakeven rule is mathematically optimal because it threads the needle b
 
 The compounding improvement is the most compelling argument: the 7RR strategy grows from **$772k to $1.06M** simply by adding one additional price-level check. The 20RR strategy grows from **$4.0M to $4.8M** (+$778k).
 
-**This is the official, final, fully-validated strategy ruleset.**
+**Disclaimer: This research and the associated backtests are for educational purposes only. Past performance is not indicative of future results, and trading futures carries significant risk of loss.**
