@@ -485,3 +485,25 @@ We then took the optimized parameters and tested them blindly on the Out-of-Samp
 
 
 **Conclusion:** The slower EMA variants (like `60/180` or `50/200`) actually *improved* during the out-of-sample forward test because the NQ's overall volatility regime structurally expanded post-2017. They are not curve-fitted; they are mathematically superior filters for the modern volatility environment.
+
+
+
+### === ROLLING 2-YEAR EPOCH VALIDATION (60/180 OVERFIT TEST) ===
+
+If 60/180 is overfitted to a specific historical anomaly, it will break down in certain epochs.
+If it is structurally robust, it should maintain profitability across multiple disjoint eras.
+
+| Epoch | Market Regime | 60/180 Sharpe | 25/100 (Base) Sharpe | 60/180 WinRate | Trades |
+| :--- | :--- | :---: | :---: | :---: | :---: |
+| **2010-2011** | Post-GFC Grind | 0.756 | -0.051 | 14.8% | 54 |
+| **2012-2013** | Low Vol Bull | 0.970 | -0.299 | 14.7% | 109 |
+| **2014-2015** | Chop/Consolidation | 0.752 | 0.493 | 13.1% | 107 |
+| **2016-2017** | Melt-Up | 1.274 | 0.726 | 15.6% | 122 |
+| **2018-2019** | Vol Spike / V-Shape | 1.120 | 0.921 | 15.1% | 119 |
+| **2020-2021** | Covid Crash & QE Mania | 1.816 | 1.382 | 19.8% | 96 |
+| **2022-2024** | Bear Market & AI Boom | 0.902 | 0.869 | 13.7% | 146 |
+
+**Verdict:**
+60/180 Average Epoch Sharpe: 1.084
+25/100 Average Epoch Sharpe: 0.577
+Profitable Epochs (60/180): 7 / 7
